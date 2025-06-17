@@ -15,11 +15,8 @@
             Então devo ver uma mensagem de erro informando que todos os campos são obrigatórios
 
         Esquema do Cenário: Validação de limite de quantidade
-            Quando eu selecionar a cor <cor>
-            E o tamanho <tamanho>
-            E a quantidade <quantidade>
-            E tentar adicionar ao carrinho
-            Então o sistema deve exibir uma mensagem <mensagem>
+            Quando eu selecionar a <cor>, <tamanho>, <quantidade> e tentar adicionar ao carrinho
+            Então os sistema deve exibir uma <mensagem>
 
         Exemplos:
             | cor      | tamanho | quantidade | mensagem                          |
