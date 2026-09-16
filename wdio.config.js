@@ -17,9 +17,10 @@ if (missingEnvironmentVariables.length > 0) {
 exports.config = {
   runner: 'local',
   protocol: 'https',
-  hostname: 'ondemand.saucelabs.com',
+  hostname: 'ondemand.us-west-1.saucelabs.com',
   port: 443,
   path: '/wd/hub',
+  connectionRetryCount: 0,
 
   user: process.env.SAUCE_USERNAME,
   key: process.env.SAUCE_ACCESS_KEY,
