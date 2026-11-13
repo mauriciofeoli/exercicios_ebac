@@ -45,6 +45,7 @@ O projeto final do curso fica em um repositório separado: [TCC-EBAC-QE](https:/
 | Pasta | O que tem | Ferramentas |
 |---|---|---|
 | [modulo-28-performance-k6](modulo-28-performance-k6) | Teste de carga nos endpoints de produtos e clientes de uma API GraphQL | k6, GraphQL |
+| [performance-jmeter-busca-youtube](performance-jmeter-busca-youtube) | Plano de teste de busca com massa de dados em CSV e think time | JMeter |
 | [modulo-32-banco-de-dados-sql-nosql](modulo-32-banco-de-dados-sql-nosql) | Consultas no banco Sakila e em collections do MongoDB | SQL, MongoDB |
 
 ### Prática de Git
