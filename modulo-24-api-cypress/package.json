@@ -1,0 +1,16 @@
+{
+  "name": "ebac-exec24-api-tests",
+  "version": "1.0.0",
+  "description": "Testes de API - Hub de Leitura EBAC Exercicio 24",
+  "scripts": {
+    "test": "cypress run",
+    "test:open": "cypress open",
+    "report": "cypress run --reporter mochawesome"
+  },
+  "devDependencies": {
+    "cypress": "^13.17.0",
+    "mochawesome": "^7.1.4",
+    "mochawesome-merge": "^5.1.1",
+    "mochawesome-report-generator": "^6.3.2"
+  }
+}
