@@ -71,7 +71,3 @@ Os workflows ficam em `.github/workflows/` e cada um só roda quando a pasta cor
 - `modulo-22-cypress.yml` — Cypress + relatório HTML como artefato;
 - `modulo-23-cypress.yml` — Cypress + relatório HTML como artefato;
 - `modulo-30-sauce-labs.yml` — testes iOS no Sauce Labs (precisa dos secrets do Sauce Labs configurados no repositório).
-
-## Histórico
-
-Os exercícios ficavam em repositórios separados (`ebac-exerc17`, `ebac-exerc-22` e outros) e foram trazidos para cá com o histórico de commits preservado.
