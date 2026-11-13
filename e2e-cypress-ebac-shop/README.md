@@ -1,5 +1,7 @@
 # Testes E2E - EBAC
 
+> Exercício feito a partir do template disponibilizado pela EBAC no curso de Qualidade de Software.
+
 Repositório de estudos e automação de testes end-to-end para a aplicação EBAC Shop.
 
 ## Objetivo

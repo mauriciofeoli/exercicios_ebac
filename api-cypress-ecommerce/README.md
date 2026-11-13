@@ -1,5 +1,7 @@
 # Testes de API - EBAC
 
+> Exercício feito a partir do template disponibilizado pela EBAC no curso de Qualidade de Software.
+
 Repositório para prática de automação de testes de API utilizando Cypress.
 
 ## Objetivo
