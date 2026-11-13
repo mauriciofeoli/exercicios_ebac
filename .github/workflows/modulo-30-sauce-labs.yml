@@ -37,6 +37,7 @@ jobs:
     steps:
       - name: Verificar credenciais do Sauce Labs
         id: creds
+        working-directory: .
         run: |
           if [ -z "$SAUCE_USERNAME" ] || [ -z "$SAUCE_ACCESS_KEY" ]; then
             echo "Secrets do Sauce Labs não configurados neste repositório; testes ignorados."
