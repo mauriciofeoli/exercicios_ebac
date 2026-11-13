@@ -1,39 +1,43 @@
-﻿# Testes Mobile iOS - EBAC
+﻿# Módulo 22 – Testes E2E com Cypress, Docker e CI
 
-Projeto de automação de testes para cenários de login, navegação, carrinho e pagamento em um aplicativo iOS.
+Automação end-to-end da [Loja EBAC](http://lojaebac.ebaconline.art.br) com Cypress, rodando em container Docker e no GitHub Actions.
 
-## Objetivo
+## Cenários
 
-Validar a experiência do usuário em cenários críticos de compra e fluxo de autenticação em ambiente mobile.
+- Cadastro de conta com e-mail e senha válidos (Page Object).
+- Adicionar produto ao carrinho e seguir para o checkout (App Actions).
 
 ## Tecnologias
 
-- WebdriverIO
-- Appium
-- Sauce Labs
-- JavaScript
+- Cypress 13
+- JavaScript / Node.js
+- Docker (imagem `cypress/included`)
+- GitHub Actions
+- Relatório JUnit convertido em HTML
 
-## Pré-requisitos
+## Estrutura
 
-- Node.js
-- npm
-- Appium
-- Conta Sauce Labs configurada
+- `cypress/e2e/` — cenários de teste;
+- `cypress/page-objects/` — Page Objects;
+- `cypress/app-actions/` — ações reutilizáveis (carrinho);
+- `scripts/generate-cypress-report.js` — gera o relatório HTML a partir do JUnit;
+- `Dockerfile` — executa os testes em container.
 
-## Instalação
+## Executar
 
 ```bash
 npm install
+npm test                 # roda os testes e gera JUnit em cypress/reports/junit
+npm run generate:report  # gera o relatório HTML em site/
 ```
 
-## Execução
+Com Docker:
 
 ```bash
-npm test
+docker build -t ebac-cypress .
+docker run --rm ebac-cypress
 ```
 
-## Estrutura do projeto
+## CI
 
-- `.sauce/` — configuração do ambiente de execução;
-- `test/` — cenários automatizados;
-- `wdio.config.js` — configuração do WebdriverIO.
+O workflow `.github/workflows/modulo-22-cypress.yml`, na raiz do repositório, roda os testes a cada alteração nesta pasta e publica o relatório HTML como artefato da execução.

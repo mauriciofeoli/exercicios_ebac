@@ -1,24 +1,30 @@
-name: CI Cypress Pages
+name: Módulo 22 - Cypress
 
 on:
   push:
     branches: [main, master]
+    paths:
+      - "modulo-22-e2e-cypress-docker-ci/**"
+      - ".github/workflows/modulo-22-cypress.yml"
   pull_request:
     branches: [main, master]
+    paths:
+      - "modulo-22-e2e-cypress-docker-ci/**"
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: pages
+  group: modulo-22-e2e-cypress-docker-ci
   cancel-in-progress: true
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: modulo-22-e2e-cypress-docker-ci
 
     steps:
       - name: Checkout do código
@@ -29,6 +35,7 @@ jobs:
         with:
           node-version: 20
           cache: npm
+          cache-dependency-path: modulo-22-e2e-cypress-docker-ci/package-lock.json
 
       - name: Instalar dependências
         run: npm ci
@@ -42,18 +49,8 @@ jobs:
 
       - name: Upload do relatório como artefato
         if: always()
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          path: ./site
+          name: relatorio-modulo-22-e2e-cypress-docker-ci
+          path: modulo-22-e2e-cypress-docker-ci/site
 
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    steps:
-      - name: Deploy para GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4

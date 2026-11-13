@@ -1,5 +1,9 @@
-# Testes End to End - Ebac Shop
-### Exercício para os alunos de Qualidade de software da EBAC 
+# Testes End to End - Ebac Shop com Jenkins
+
+> Exercício feito a partir do template disponibilizado pela EBAC no curso de Qualidade de Software.
+
+Minha parte: configurei o `Jenkinsfile` para rodar os testes Cypress num agente Jenkins (Windows).
+Como agora o projeto está dentro de `exercicios_ebac`, o pipeline clona este repositório e roda os comandos na pasta `e2e-cypress-jenkins`.
 
 Ebac shop: http://lojaebac.ebaconline.art.br/
 

@@ -1,0 +1,66 @@
+name: Módulo 30 - iOS no Sauce Labs
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "modulo-30-mobile-ios-sauce-labs-ci/**"
+      - ".github/workflows/modulo-30-sauce-labs.yml"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "modulo-30-mobile-ios-sauce-labs-ci/**"
+  workflow_dispatch:
+
+concurrency:
+  group: sauce-ios-${{ github.event.pull_request.base.ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  ios-sauce-labs:
+    name: Fluxo de compra iOS
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: modulo-30-mobile-ios-sauce-labs-ci
+    timeout-minutes: 30
+    env:
+      SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+      SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+      SAUCE_APP: ${{ secrets.SAUCE_APP }}
+      SAUCE_DEVICE_NAME: ${{ secrets.SAUCE_DEVICE_NAME }}
+      SAUCE_PLATFORM_VERSION: ${{ secrets.SAUCE_PLATFORM_VERSION }}
+      SAUCE_BUILD: modulo30-${{ github.run_number }}
+
+    steps:
+      - name: Verificar credenciais do Sauce Labs
+        id: creds
+        run: |
+          if [ -z "$SAUCE_USERNAME" ] || [ -z "$SAUCE_ACCESS_KEY" ]; then
+            echo "Secrets do Sauce Labs não configurados neste repositório; testes ignorados."
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Baixar código
+        if: steps.creds.outputs.ok == 'true'
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        if: steps.creds.outputs.ok == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: modulo-30-mobile-ios-sauce-labs-ci/package-lock.json
+
+      - name: Instalar dependências
+        if: steps.creds.outputs.ok == 'true'
+        run: npm ci
+
+      - name: Executar testes no Sauce Labs
+        if: steps.creds.outputs.ok == 'true'
+        run: npm test

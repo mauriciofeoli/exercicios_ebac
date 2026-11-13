@@ -13,10 +13,11 @@ Os testes usam WebdriverIO, Appium e Sauce Labs.
 
 ## GitHub Actions e Sauce Labs
 
-A integração contínua fica na branch `ci`, no workflow
-`.github/workflows/sauce-labs.yml`. O workflow executa os testes em um
-dispositivo iOS hospedado no Sauce Labs após um push ou pull request para essa
-branch.
+A integração contínua fica no workflow
+`.github/workflows/modulo-30-sauce-labs.yml`, na raiz do repositório. Ele executa
+os testes em um dispositivo iOS hospedado no Sauce Labs a cada push ou pull
+request que altere esta pasta. Sem os secrets configurados, o workflow apenas
+avisa e não executa os testes.
 
 Configure estes secrets em `Settings > Secrets and variables > Actions`:
 
@@ -28,5 +29,5 @@ Configure estes secrets em `Settings > Secrets and variables > Actions`:
 - `SAUCE_PLATFORM_VERSION`: versão do iOS, por exemplo `16.0`
 
 O app precisa ser enviado previamente ao Sauce Labs. O vídeo da execução fica
-disponível na sessão correspondente ao build `ebac-exerc30-<número da execução>`
+disponível na sessão correspondente ao build `modulo30-<número da execução>`
 no dashboard do Sauce Labs.
